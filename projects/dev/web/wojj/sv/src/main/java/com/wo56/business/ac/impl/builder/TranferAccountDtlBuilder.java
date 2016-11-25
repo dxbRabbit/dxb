@@ -8,7 +8,7 @@ import com.wo56.common.consts.AccountManageConsts;
 import com.wo56.common.utils.OraganizationCacheDataUtil;
 
 /**
- * ÖĞ×ª -> ÖĞ×ª·Ñ
+ * ä¸­è½¬ -> ä¸­è½¬è´¹
  * 
  * @author dxb
  */
@@ -31,55 +31,55 @@ public class TranferAccountDtlBuilder extends ReversalAcAccountDtl implements Pr
 
 	@Override
 	public AcAccountDtl createAcAccountDtl() {
-		// ÕË»§ºËÏúÃ÷Ï¸ĞÂÔö
+		// è´¦æˆ·æ ¸é”€æ˜ç»†æ–°å¢
 		if (null == accountDtl){
 			accountDtl = new AcAccountDtl();
 		}
 			
-		// ÕË»§²¿·Ö
+		// è´¦æˆ·éƒ¨åˆ†
 		accountDtl.setBusiType(AccountManageConsts.AcAccountDtl.BUSI_TYPE_CASH);
-		accountDtl.setAccountId(-1L);//lyh²»¼ÇÂ¼ÕË»§
+		accountDtl.setAccountId(-1L);//lyhä¸è®°å½•è´¦æˆ·
 		accountDtl.setObjType(AccountManageConsts.Common.OBJ_TYPE_POINT);
 		accountDtl.setObjId(orgId);
 		accountDtl.setObjName(OraganizationCacheDataUtil.getOrgName(orgId));
 		accountDtl.setNodeType(nodeType);
 
-		// ·ÑÓÃ²¿·Ö
+		// è´¹ç”¨éƒ¨åˆ†
+		// è´¹ç”¨éƒ¨åˆ†
 		if(orderFee.getPayType() == AccountManageConsts.Common.PAY_TYPE_INCOME){
 			accountDtl.setFee(Math.abs(orderFee.getAmount()));
 		}else{
 			accountDtl.setFee(-Math.abs(orderFee.getAmount()));
 		}
-		
 		accountDtl.setFeeType(orderFee.getFeeType());
 		accountDtl.setPaySts(orderFee.getPaySts());
 		accountDtl.setPayType(orderFee.getPayType());
 
-		// ¶ÔÏó²¿·Ö
+		// å¯¹è±¡éƒ¨åˆ†
 		accountDtl.setFaceObjType(orderFee.getObjType());
 		accountDtl.setFaceObjId(orderFee.getObjId());
 		accountDtl.setFaceObjName(orderFee.getObjName());
-		accountDtl.setFaceAccId(-1L);////lyh²»¼ÇÂ¼ÕË»§
+		accountDtl.setFaceAccId(-1L);////lyhä¸è®°å½•è´¦æˆ·
 		
-		//ºËÏú²¿·Ö dxb ĞÂÔö
+		//æ ¸é”€éƒ¨åˆ† dxb æ–°å¢
 		accountDtl.setCheckOrg(orgId);
 		accountDtl.setCheckSts(AccountManageConsts.AcCashProve.CHECK_STS_NON);
 		accountDtl.setModifyOpId(opId);
 		accountDtl.setCheckAmount(0L);
 		accountDtl.setWithoutAmount(0L);
 		accountDtl.setCheckAmount(0L);
-		accountDtl.setCheckRemark("ÖĞ×ªºËÏú");
+		accountDtl.setCheckRemark("ä¸­è½¬æ ¸é”€");
 		
 		
-		// ÆäËû²¿·Ö
+		// å…¶ä»–éƒ¨åˆ†
 		Date createDate = new Date();
 		accountDtl.setCreateDate(createDate);
 		accountDtl.setPayStsModifyDate(createDate);
-		accountDtl.setCheckedId(null); //2±íºÏ²¢ºó²»´æÔÚºËÏúID
+		accountDtl.setCheckedId(null); //2è¡¨åˆå¹¶åä¸å­˜åœ¨æ ¸é”€ID
 		accountDtl.setTrackingNum(trackingNum);
 		accountDtl.setOrderId(orderId);
 		accountDtl.setOpId(opId);
-		accountDtl.setSysRemark("ÖĞ×ª¼ÇÂ¼");
+		accountDtl.setSysRemark("ä¸­è½¬è®°å½•");
 		
 		accountDtl.setTenantType(orderFee.getTenantType());
 		return accountDtl;
